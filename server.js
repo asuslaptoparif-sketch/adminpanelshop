@@ -21,7 +21,7 @@ const API_URL    = 'https://adminpanels.shop/api/reseller_v1.php';
 // Telegram Bot Config
 const TG_BOT_TOKEN = '8839131717:AAEeJh87apBMnh14xFlr8JI_uMBDJetFUpU'; // User should replace this
 const TG_CHANNEL_ID = '-1003747014152'; // User's channel ID
-const SERVER_URL = 'http://localhost:3000'; // Replace with your public URL (e.g. ngrok) for webhook to work
+const SERVER_URL = 'https://adminpanelshop.vercel.app/'; // Replace with your public URL (e.g. ngrok) for webhook to work
 
 // ── Database (lowdb JSON file) ────────────────────────────────
 const isVercel = process.env.VERCEL || process.env.NODE_ENV === 'production';
