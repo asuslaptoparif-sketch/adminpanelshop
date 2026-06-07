@@ -8,6 +8,7 @@ const bcrypt   = require('bcryptjs');
 const jwt      = require('jsonwebtoken');
 const low      = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
+const fs       = require('fs');
 
 const app  = express();
 const PORT = process.env.PORT || 3000;
@@ -23,7 +24,22 @@ const TG_CHANNEL_ID = '-1003747014152'; // User's channel ID
 const SERVER_URL = 'http://localhost:3000'; // Replace with your public URL (e.g. ngrok) for webhook to work
 
 // ── Database (lowdb JSON file) ────────────────────────────────
-const adapter = new FileSync('db.json');
+const isVercel = process.env.VERCEL || process.env.NODE_ENV === 'production';
+const dbPath = isVercel ? '/tmp/db.json' : path.join(__dirname, 'db.json');
+
+// Copy original db.json to /tmp if on Vercel and doesn't exist
+if (isVercel && !fs.existsSync(dbPath)) {
+  try {
+    const originalDbPath = path.join(__dirname, 'db.json');
+    if (fs.existsSync(originalDbPath)) {
+      fs.copyFileSync(originalDbPath, dbPath);
+    }
+  } catch (err) {
+    console.error('Failed to copy db.json to /tmp:', err);
+  }
+}
+
+const adapter = new FileSync(dbPath);
 const db      = low(adapter);
 
 db.defaults({
