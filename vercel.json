@@ -1,8 +1,18 @@
 {
   "version": 2,
-  "rewrites": [
-    { "source": "/api/(.*)", "destination": "server.js" },
-    { "source": "/auth/(.*)", "destination": "server.js" },
-    { "source": "/admin/(.*)", "destination": "server.js" }
+  "builds": [
+    {
+      "src": "server.js",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": ["*.html", "*.css", "*.js", "db.json"]
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "server.js"
+    }
   ]
 }
