@@ -1,0 +1,22 @@
+{
+  "name": "br-mods-reseller-panel",
+  "version": "2.0.0",
+  "description": "BR Mods Reseller Panel — Full System",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "form-data": "^4.0.0",
+    "node-fetch": "^2.7.0",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "lowdb": "^1.0.0",
+    "lodash": "^4.17.21"
+  },
+  "author": "BR Mods",
+  "license": "MIT"
+}

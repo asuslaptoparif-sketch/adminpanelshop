@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>BR Mods — Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#07070f;--card:rgba(13,13,26,.9);--border:rgba(124,58,237,.2);--purple:#7C3AED;--violet:#A78BFA;--cyan:#06B6D4;--green:#10B981;--red:#EF4444;--text:#E2E2F0;--muted:#6B7280;--r:16px;--primary: #8b5cf6}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+.bg-orb{position:fixed;border-radius:50%;filter:blur(100px);opacity:.1;pointer-events:none;z-index:0}
+.orb1{width:500px;height:500px;background:#7C3AED;top:-200px;left:-150px}
+.orb2{width:350px;height:350px;background:#06B6D4;bottom:-100px;right:-80px}
+.grad{background:linear-gradient(135deg,#A78BFA,#38BDF8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(7,7,15,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 20px;height:65px;display:flex;align-items:center;gap:12px}
+.nav-logo{font-size:1.3rem;font-weight:900;margin-right:auto;display:flex;align-items:center;gap:8px}
+.nav-right{display:flex;align-items:center;gap:12px}
+.nav-bal{background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2);border-radius:12px;padding:6px 14px;font-size:.9rem;font-weight:700;color:#34D399;display:flex;align-items:center;gap:6px}
+.btn-menu{background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:10px;color:var(--text);padding:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;border:none}
+
+/* TAB NAV */
+.tab-nav{display:flex;justify-content:center;gap:10px;margin:20px 0 30px}
+.tn-btn{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:12px;padding:10px 16px;color:var(--muted);cursor:pointer;transition:all .3s;display:flex;align-items:center;gap:8px;font-family:'Outfit',sans-serif;font-weight:600;border:1px solid var(--border)}
+.tn-btn:hover{background:rgba(124,58,237,.1);color:var(--text)}
+.tn-btn.active{background:var(--purple);border-color:var(--violet);color:#fff;box-shadow:0 0 20px rgba(124,58,237,.3)}
+
+/* KEY GENERATOR BOX */
+.gen-box{max-width:480px;margin:0 auto 40px;background:var(--card);border:1px solid var(--border);border-radius:24px;padding:30px;box-shadow:0 20px 50px rgba(0,0,0,.4);position:relative;overflow:hidden}
+.gen-box::before{content:'';position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg, var(--purple), var(--cyan))}
+.gen-title{text-align:center;font-size:1.3rem;font-weight:800;margin-bottom:24px;color:var(--violet)}
+
+.f-group{margin-bottom:20px}
+.f-label{display:block;font-size:.75rem;font-weight:700;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px;display:flex;align-items:center;gap:6px}
+.f-select-wrap{position:relative}
+.f-select{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:12px;padding:12px 16px;color:var(--text);font-family:'Outfit',sans-serif;font-size:.95rem;outline:none;appearance:none;cursor:pointer;transition:all .3s}
+.f-select:focus{border-color:var(--purple);background:rgba(124,58,237,.05)}
+.f-select option{background:#0d0d1a;color:var(--text)}
+.f-select-wrap::after{content:'\25BE';position:absolute;right:16px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}
+
+.qty-wrap{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:12px;padding:6px}
+.qty-btn{width:36px;height:36px;border-radius:8px;border:none;background:var(--purple);color:#fff;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.qty-btn:active{transform:scale(.9)}
+.qty-val{flex:1;text-align:center;font-weight:700;font-size:1.1rem}
+
+.gen-btn{width:100%;margin-top:10px;padding:14px;background:linear-gradient(135deg, var(--purple), #4F46E5);border:none;border-radius:14px;color:#fff;font-family:'Outfit',sans-serif;font-size:1rem;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .3s;text-transform:uppercase;letter-spacing:1px}
+.gen-btn:hover{box-shadow:0 8px 25px rgba(124,58,237,.45);transform:translateY(-2px)}
+.gen-btn:active{transform:translateY(0)}
+
+/* DEPOSIT BOX */
+.dep-box{display:none;max-width:480px;margin:0 auto 40px;background:var(--card);border:1px solid var(--border);border-radius:24px;padding:30px;box-shadow:0 20px 50px rgba(0,0,0,.4)}
+.dep-grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:12px;margin-bottom:24px}
+.dep-card{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:16px;padding:15px 10px;text-align:center;cursor:pointer;transition:all .3s}
+.dep-card:hover{border-color:var(--purple);background:rgba(124,58,237,.05)}
+.dep-card.active{border-color:var(--purple);background:rgba(124,58,237,.15);box-shadow:0 0 15px rgba(124,58,237,.2)}
+.dep-img{height:35px;margin-bottom:8px;object-fit:contain}
+.dep-name{font-size:.75rem;font-weight:700;color:var(--text)}
+
+.dep-details{background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.2);border-radius:16px;padding:16px;margin-bottom:20px}
+.dep-row{display:flex;justify-content:space-between;margin-bottom:8px;font-size:.85rem}
+.dep-lbl{color:var(--muted)}
+.dep-val{font-weight:700;color:var(--violet)}
+
+/* ORDERS */
+.sec-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.sec-title h2{font-size:1.3rem;font-weight:800}
+.table-wrap{background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:580px}
+thead tr{background:rgba(124,58,237,.1);border-bottom:1px solid var(--border)}
+th{padding:12px 16px;text-align:left;font-size:.75rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+td{padding:12px 16px;font-size:.85rem;border-bottom:1px solid rgba(124,58,237,.06)}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover{background:rgba(124,58,237,.05)}
+.empty-td{text-align:center;color:var(--muted);padding:40px!important}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:50px;font-size:.74rem;font-weight:700}
+.b-suc{background:rgba(16,185,129,.12);color:#34D399;border:1px solid rgba(16,185,129,.25)}
+.b-fail{background:rgba(239,68,68,.12);color:#F87171;border:1px solid rgba(239,68,68,.25)}
+
+/* MODAL */
+.overlay{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .3s}
+.overlay.open{opacity:1;pointer-events:all}
+.modal{background:#0d0d1a;border:1px solid rgba(124,58,237,.35);border-radius:22px;width:100%;max-width:420px;transform:scale(.9) translateY(16px);transition:transform .35s cubic-bezier(.34,1.56,.64,1);box-shadow:0 30px 80px rgba(0,0,0,.7)}
+.overlay.open .modal{transform:scale(1) translateY(0)}
+.m-head{padding:22px 24px 0;display:flex;align-items:center;justify-content:space-between}
+.m-head h3{font-size:1.1rem;font-weight:800}
+.m-close{background:rgba(255,255,255,.07);border:none;border-radius:8px;color:var(--muted);font-size:1rem;cursor:pointer;padding:5px 10px;transition:all .3s}
+.m-close:hover{background:rgba(239,68,68,.2);color:#F87171}
+.m-body{padding:18px 24px}
+.m-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(124,58,237,.1)}
+.m-row:last-of-type{border:none}
+.m-label{font-size:.8rem;color:var(--muted);font-weight:500}
+.m-val{font-size:.9rem;font-weight:700}
+.m-result{margin-top:14px;padding:12px 14px;border-radius:10px;font-size:.85rem;font-weight:600;display:none;word-break:break-all}
+.m-result.suc{display:block;background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.3);color:#34D399}
+.m-result.err{display:block;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3);color:#F87171}
+.m-foot{padding:0 24px 22px;display:flex;gap:10px}
+.btn-cancel{flex:1;padding:11px;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:10px;color:var(--muted);font-family:'Outfit',sans-serif;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .3s}
+.btn-cancel:hover{color:var(--text);background:rgba(255,255,255,.09)}
+.btn-confirm{flex:2;padding:11px;background:linear-gradient(135deg,#059669,#10B981);border:none;border-radius:10px;color:#fff;font-family:'Outfit',sans-serif;font-size:.93rem;font-weight:700;cursor:pointer;transition:all .3s}
+.btn-confirm:hover{box-shadow:0 6px 22px rgba(16,185,129,.35);transform:translateY(-1px)}
+.btn-confirm:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:5px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* TOAST */
+.toast-wrap{position:fixed;bottom:24px;right:24px;z-index:999;display:flex;flex-direction:column;gap:8px}
+.toast{min-width:240px;background:#0d0d1a;border:1px solid var(--border);border-radius:12px;padding:12px 16px;display:flex;gap:10px;align-items:flex-start;box-shadow:0 6px 24px rgba(0,0,0,.5);animation:tslide .4s cubic-bezier(.34,1.56,.64,1)}
+@keyframes tslide{from{opacity:0;transform:translateY(14px) scale(.9)}}
+.toast.hide{animation:tfade .35s ease forwards}
+@keyframes tfade{to{opacity:0;transform:translateY(8px) scale(.95)}}
+.toast-ico{font-size:1.2rem}
+.toast-msg{font-size:.82rem;font-weight:600}
+.toast-sub{font-size:.72rem;color:var(--muted)}
+
+@media(max-width:640px){.products-grid{grid-template-columns:1fr}.page-hd h1{font-size:1.7rem}}
+</style>
+</head>
+<body>
+<div class="bg-orb orb1"></div>
+<div class="bg-orb orb2"></div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">👑 BR <span class="grad">Mods</span></div>
+    <div class="nav-right">
+      <div class="nav-bal">💰 ৳<span id="navBal">0.00</span></div>
+      <button class="btn-menu" onclick="logout()" title="Logout">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="tab-nav">
+    <button class="tn-btn" id="tabOrders" onclick="switchMainTab('orders')">📋 My Orders</button>
+    <button class="tn-btn active" id="tabGen" onclick="switchMainTab('gen')">🔑 Key Generator</button>
+    <button class="tn-btn" id="tabDep" onclick="switchMainTab('dep')">💰 Deposit</button>
+  </div>
+
+  <!-- KEY GENERATOR -->
+  <div class="gen-box" id="genBox">
+    <div class="gen-title">Key Generator</div>
+    
+    <div class="f-group">
+      <label class="f-label">📦 Product Type:</label>
+      <div class="f-select-wrap">
+        <select class="f-select" id="pSelect" onchange="updateDurations()">
+          <option value="">Select Product...</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="f-group">
+      <label class="f-label">⏳ Validity:</label>
+      <div class="f-select-wrap">
+        <select class="f-select" id="dSelect">
+          <option value="">Select Duration...</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="f-group">
+      <label class="f-label">🔢 Quantity:</label>
+      <div class="qty-wrap">
+        <button class="qty-btn" onclick="updateQty(-1)">-</button>
+        <div class="qty-val" id="qtyVal">1</div>
+        <button class="qty-btn" onclick="updateQty(1)">+</button>
+      </div>
+    </div>
+
+    <button class="gen-btn" onclick="confirmBuy()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+      Generate Keys
+    </button>
+  </div>
+
+  <!-- DEPOSIT BOX -->
+  <div class="dep-box" id="depBox">
+    <div class="gen-title">Deposit Balance</div>
+    
+    <div class="dep-grid">
+      <div class="dep-card active" onclick="selectDep(this, 'bkash')">
+        <img src="https://adminpanels.shop/assets/images/bkash.png" class="dep-img" alt="bkash">
+        <div class="dep-name">bKash</div>
+      </div>
+      <div class="dep-card" onclick="selectDep(this, 'nagad')">
+        <img src="https://adminpanels.shop/assets/images/nagad.png" class="dep-img" alt="nagad">
+        <div class="dep-name">Nagad</div>
+      </div>
+      <div class="dep-card" onclick="selectDep(this, 'binance')">
+        <img src="https://adminpanels.shop/assets/images/binance.png" class="dep-img" alt="binance">
+        <div class="dep-name">Binance</div>
+      </div>
+    </div>
+
+    <div class="dep-details">
+      <div class="dep-row"><span class="dep-lbl">Method:</span><span class="dep-val" id="depMethod">bKash (Personal)</span></div>
+      <div class="dep-row"><span class="dep-lbl">Number:</span><span class="dep-val" id="depNum">017XXXXXXXX</span></div>
+      <div class="dep-row"><span class="dep-lbl">Min Deposit:</span><span class="dep-val">৳ 100</span></div>
+    </div>
+
+    <div class="f-group">
+      <label class="f-label">Amount (৳):</label>
+      <input type="number" class="f-select" id="depAmount" placeholder="e.g. 500" style="appearance:auto">
+    </div>
+    <div class="f-group">
+      <label class="f-label">Transaction ID:</label>
+      <input type="text" class="f-select" id="depTrx" placeholder="Enter TrxID">
+    </div>
+
+    <button class="gen-btn" onclick="submitDeposit()" style="background:linear-gradient(135deg, #10B981, #059669)">
+      Confirm Deposit
+    </button>
+  </div>
+
+  <!-- MY ORDERS -->
+  <div id="ordersBox" style="display:none">
+    <div class="sec-title"><h2>📋 My <span class="grad">Orders</span></h2></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>#</th><th>Product</th><th>Duration</th><th>Price</th><th>Status</th><th>Time</th></tr></thead>
+        <tbody id="ordersBody"><tr><td class="empty-td" colspan="6">No orders yet</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<!-- Buy Modal -->
+<div class="overlay" id="overlay" onclick="closeModal()">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="m-head">
+      <h3>🛒 Confirm Purchase</h3>
+      <button class="m-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="m-body">
+      <div class="m-row"><span class="m-label">Product</span><span class="m-val" id="mProduct">—</span></div>
+      <div class="m-row"><span class="m-label">Duration</span><span class="m-val" id="mDuration">—</span></div>
+      <div class="m-row"><span class="m-label">Quantity</span><span class="m-val" id="mQty">1</span></div>
+      <div class="m-row"><span class="m-label">Total Price</span><span class="m-val" style="color:#34D399" id="mPrice">—</span></div>
+      <div class="m-row"><span class="m-label">Your Balance</span><span class="m-val" id="mBalance">—</span></div>
+      <div class="m-result" id="mResult"></div>
+    </div>
+    <div class="m-foot" id="mFoot">
+      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+      <button class="btn-confirm" id="mConfirmBtn" onclick="executeBuy()">✅ Confirm Buy</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-wrap" id="toasts"></div>
+
+<script>
+const TOKEN = localStorage.getItem('br_token');
+const USER  = JSON.parse(localStorage.getItem('br_user') || 'null');
+if (!TOKEN || !USER) { window.location.href = 'index.html'; }
+
+let allProducts = [];
+let selectedQty = 1;
+let userBalance = USER?.balance || 0;
+
+document.getElementById('navBal').textContent = (+userBalance).toFixed(2);
+
+function logout() {
+  localStorage.removeItem('br_token');
+  localStorage.removeItem('br_user');
+  window.location.href = 'index.html';
+}
+
+async function api(url, opts={}) {
+  const r = await fetch(url, { headers: { 'Authorization': 'Bearer ' + TOKEN, 'Content-Type':'application/json', ...(opts.headers||{}) }, ...opts });
+  if (r.status === 403) {
+    const d = await r.json();
+    if (d.error && d.error.includes('banned')) {
+      alert('❌ Your account has been banned!');
+      logout();
+    }
+  }
+  return r;
+}
+
+function switchMainTab(tab) {
+  document.getElementById('tabGen').classList.toggle('active', tab==='gen');
+  document.getElementById('tabDep').classList.toggle('active', tab==='dep');
+  document.getElementById('tabOrders').classList.toggle('active', tab==='orders');
+  document.getElementById('genBox').style.display = tab==='gen' ? 'block' : 'none';
+  document.getElementById('depBox').style.display = tab==='dep' ? 'block' : 'none';
+  document.getElementById('ordersBox').style.display = tab==='orders' ? 'block' : 'none';
+}
+
+function updateQty(v) {
+  selectedQty = Math.max(1, selectedQty + v);
+  document.getElementById('qtyVal').textContent = selectedQty;
+}
+
+function selectDep(el, method) {
+  document.querySelectorAll('.dep-card').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  const info = {
+    bkash: { name: 'bKash (Personal)', num: '017XXXXXXXX' },
+    nagad: { name: 'Nagad (Personal)', num: '019XXXXXXXX' },
+    binance: { name: 'Binance Pay ID', num: '123456789' }
+  }[method];
+  document.getElementById('depMethod').textContent = info.name;
+  document.getElementById('depNum').textContent = info.num;
+}
+
+async function loadProducts() {
+  try {
+    const r = await fetch('/api/products');
+    allProducts = await r.json();
+    const sel = document.getElementById('pSelect');
+    sel.innerHTML = '<option value="">Select Product...</option>' + 
+      allProducts.map(p => `<option value="${p.id}">${p.name}</option>`).join('');
+  } catch(e) { toast('❌', 'Error', 'Failed to load products', 'error'); }
+}
+
+function updateDurations() {
+  const pId = document.getElementById('pSelect').value;
+  const dSel = document.getElementById('dSelect');
+  if (!pId) { dSel.innerHTML = '<option value="">Select Duration...</option>'; return; }
+  
+  const product = allProducts.find(p => p.id == pId);
+  dSel.innerHTML = product.prices.map(pr => `<option value="${pr.duration}" data-price="${pr.price}">${pr.duration} - ৳${pr.price}</option>`).join('');
+}
+
+function confirmBuy() {
+  const pId = document.getElementById('pSelect').value;
+  const dur = document.getElementById('dSelect').value;
+  if (!pId || !dur) return toast('⚠️', 'Missing Info', 'Select product and duration', 'error');
+
+  const product = allProducts.find(p => p.id == pId);
+  const price = document.getElementById('dSelect').selectedOptions[0].dataset.price;
+  const total = price * selectedQty;
+
+  document.getElementById('mProduct').textContent = product.name;
+  document.getElementById('mDuration').textContent = dur;
+  document.getElementById('mQty').textContent = selectedQty;
+  document.getElementById('mPrice').textContent = `৳${total.toFixed(2)}`;
+  document.getElementById('mBalance').textContent = `৳${userBalance.toFixed(2)}`;
+  
+  document.getElementById('mResult').style.display = 'none';
+  document.getElementById('mFoot').innerHTML = `
+    <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+    <button class="btn-confirm" id="mConfirmBtn" onclick="executeBuy()">✅ Confirm Buy</button>`;
+  document.getElementById('overlay').classList.add('open');
+}
+
+function closeModal() { document.getElementById('overlay').classList.remove('open'); }
+
+async function executeBuy() {
+  const pId = document.getElementById('pSelect').value;
+  const dur = document.getElementById('dSelect').value;
+  const btn = document.getElementById('mConfirmBtn');
+  
+  btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>Processing…';
+  
+  try {
+    // Note: Backend might need adjustment for quantity, but current API buys 1.
+    // We loop for quantity if backend doesn't support multiple in one request.
+    const r = await api('/api/buy', { method:'POST', body: JSON.stringify({ product_id: parseInt(pId), duration: dur }) });
+    const d = await r.json();
+    
+    const res = document.getElementById('mResult');
+    res.style.display = 'block';
+    if (d.success) {
+      res.className = 'm-result suc';
+      res.textContent = '✅ Purchase successful!';
+      userBalance = d.new_balance;
+      document.getElementById('navBal').textContent = (+userBalance).toFixed(2);
+      toast('✅','Success!',`${dur} purchased`,'success');
+      loadOrders();
+      setTimeout(closeModal, 1500);
+    } else {
+      res.className = 'm-result err';
+      res.textContent = '❌ ' + (d.error || 'Failed');
+      btn.disabled = false; btn.innerHTML = '✅ Confirm Buy';
+    }
+  } catch(e) {
+    toast('❌', 'Error', e.message, 'error');
+    btn.disabled = false; btn.innerHTML = '✅ Confirm Buy';
+  }
+}
+
+async function submitDeposit() {
+  const amt = document.getElementById('depAmount').value;
+  const trx = document.getElementById('depTrx').value;
+  const method = document.querySelector('.dep-card.active').querySelector('.dep-name').textContent.toLowerCase();
+  
+  if (!amt || !trx) return toast('⚠️', 'Error', 'Enter amount and TrxID', 'error');
+  
+  try {
+    const r = await api('/api/deposit', { 
+      method: 'POST', 
+      body: JSON.stringify({ amount: amt, trx_id: trx, method: method }) 
+    });
+    const d = await r.json();
+    
+    if (d.success) {
+      toast('⏳', 'Submitted', 'Deposit request sent to Telegram. Wait for approval.', 'success');
+      document.getElementById('depAmount').value = '';
+      document.getElementById('depTrx').value = '';
+    } else {
+      toast('❌', 'Error', d.error || 'Failed to submit', 'error');
+    }
+  } catch (e) {
+    toast('❌', 'Error', e.message, 'error');
+  }
+}
+
+async function loadOrders() {
+  try {
+    const r = await api('/api/orders');
+    const orders = await r.json();
+    const body = document.getElementById('ordersBody');
+    if (!orders.length) { body.innerHTML='<tr><td class="empty-td" colspan="6">No orders yet</td></tr>'; return; }
+    body.innerHTML = orders.map(o => `
+      <tr>
+        <td><strong>#${o.id}</strong></td>
+        <td>${esc(o.product_name||'')}</td>
+        <td>${esc(o.duration||'')}</td>
+        <td style="color:#34D399;font-weight:700">৳${o.price_paid}</td>
+        <td><span class="badge ${o.status==='success'?'b-suc':'b-fail'}">${o.status==='success'?'✅ Success':'❌ Failed'}</span></td>
+        <td style="color:var(--muted);font-size:.78rem">${new Date(o.created_at).toLocaleString()}</td>
+      </tr>`).join('');
+  } catch {}
+}
+
+async function refreshMe() {
+  try {
+    const r = await api('/auth/me');
+    const u = await r.json();
+    if (u.id) { userBalance = u.balance; document.getElementById('navBal').textContent = (+userBalance).toFixed(2); }
+  } catch {}
+}
+
+function toast(icon, title, sub, type) {
+  const t = document.createElement('div');
+  t.className = 'toast';
+  t.style.borderLeft = `3px solid ${type==='success'?'#10B981':'#EF4444'}`;
+  t.innerHTML = `<span class="toast-ico">${icon}</span><div><div class="toast-msg">${esc(title)}</div><div class="toast-sub">${esc(sub)}</div></div>`;
+  document.getElementById('toasts').prepend(t);
+  setTimeout(() => { t.classList.add('hide'); setTimeout(()=>t.remove(),400); }, 4000);
+}
+
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+loadProducts();
+loadOrders();
+refreshMe();
+setInterval(refreshMe, 30000);
+</script>
+</body>
+</html>
+

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>BR Mods Panel — Login</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Outfit',sans-serif;background:#07070f;color:#e2e2f0;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+/* BG */
+.bg{position:fixed;inset:0;z-index:0}
+.orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.15;animation:flt 14s ease-in-out infinite}
+.orb:nth-child(1){width:500px;height:500px;background:#7C3AED;top:-150px;left:-150px;animation-delay:0s}
+.orb:nth-child(2){width:350px;height:350px;background:#06B6D4;bottom:0;right:-80px;animation-delay:5s}
+.orb:nth-child(3){width:250px;height:250px;background:#EC4899;top:40%;left:50%;animation-delay:9s}
+@keyframes flt{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-30px) scale(1.07)}}
+
+/* SECURITY SCREEN */
+#secScreen{position:fixed;inset:0;z-index:100;background:#07070f;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:24px;transition:opacity .6s ease}
+#secScreen.hide{opacity:0;pointer-events:none}
+.sec-box{background:rgba(10,10,20,.9);border:1px solid rgba(16,185,129,.3);border-radius:18px;padding:48px 56px;display:flex;flex-direction:column;align-items:center;gap:20px;box-shadow:0 0 60px rgba(16,185,129,.1)}
+.sec-title{font-size:1.1rem;font-weight:800;letter-spacing:.2em;color:#10B981}
+.sec-ring{width:72px;height:72px;border:3px solid rgba(16,185,129,.2);border-top-color:#10B981;border-radius:50%;animation:spin .9s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.sec-text{font-size:.82rem;color:#6B7280;letter-spacing:.05em}
+.sec-bar{width:200px;height:3px;background:rgba(16,185,129,.15);border-radius:3px;overflow:hidden}
+.sec-fill{height:100%;background:linear-gradient(90deg,#10B981,#06B6D4);border-radius:3px;width:0;animation:fill 2.4s ease-out forwards}
+@keyframes fill{to{width:100%}}
+
+/* MAIN CARD */
+#mainCard{position:relative;z-index:10;width:100%;max-width:440px;padding:20px}
+.glass{background:rgba(13,13,26,.85);border:1px solid rgba(124,58,237,.25);border-radius:22px;padding:40px 36px;box-shadow:0 30px 80px rgba(0,0,0,.6);backdrop-filter:blur(20px)}
+.logo-area{text-align:center;margin-bottom:28px}
+.logo-area .icon{font-size:2.4rem;margin-bottom:8px;display:block}
+.logo-area h1{font-size:1.6rem;font-weight:900;letter-spacing:-0.5px}
+.logo-area h1 span{background:linear-gradient(135deg,#A78BFA,#38BDF8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.logo-area p{font-size:.8rem;color:#6B7280;margin-top:4px}
+
+/* TABS */
+.tabs{display:flex;background:rgba(255,255,255,.04);border:1px solid rgba(124,58,237,.2);border-radius:12px;padding:4px;margin-bottom:28px}
+.tab-btn{flex:1;padding:9px;background:none;border:none;border-radius:9px;color:#6B7280;font-family:'Outfit',sans-serif;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .3s}
+.tab-btn.active{background:linear-gradient(135deg,rgba(124,58,237,.5),rgba(79,70,229,.4));color:#fff;box-shadow:0 2px 12px rgba(124,58,237,.3)}
+
+/* FORM */
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:.78rem;font-weight:600;color:#9CA3AF;margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em}
+.input-wrap{position:relative}
+.input-wrap .ic{position:absolute;left:13px;top:50%;transform:translateY(-50%);font-size:1rem;opacity:.5}
+.form-group input{width:100%;padding:12px 14px 12px 40px;background:rgba(255,255,255,.05);border:1px solid rgba(124,58,237,.2);border-radius:11px;color:#e2e2f0;font-family:'Outfit',sans-serif;font-size:.93rem;outline:none;transition:all .3s}
+.form-group input:focus{border-color:#7C3AED;background:rgba(124,58,237,.1);box-shadow:0 0 0 3px rgba(124,58,237,.15)}
+.form-group input::placeholder{color:#4B5563}
+
+.btn-main{width:100%;padding:13px;background:linear-gradient(135deg,#7C3AED,#4F46E5);border:none;border-radius:11px;color:#fff;font-family:'Outfit',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;transition:all .3s;margin-top:6px;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-main:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(124,58,237,.45)}
+.btn-main:disabled{opacity:.6;cursor:not-allowed;transform:none}
+
+.error-msg{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3);color:#F87171;border-radius:9px;padding:10px 14px;font-size:.83rem;font-weight:500;margin-bottom:14px;display:none}
+.error-msg.show{display:block}
+.success-msg{background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.3);color:#34D399;border-radius:9px;padding:10px 14px;font-size:.83rem;font-weight:500;margin-bottom:14px;display:none}
+.success-msg.show{display:block}
+
+.footer-note{text-align:center;margin-top:22px;font-size:.76rem;color:#4B5563}
+.panel-form{display:none}
+.panel-form.active{display:block}
+.spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
+</style>
+</head>
+<body>
+<div class="bg"><div class="orb"></div><div class="orb"></div><div class="orb"></div></div>
+
+<!-- Security Screen -->
+<div id="secScreen">
+  <div class="sec-box">
+    <div class="sec-title">🔒 SECURITY VALIDATION</div>
+    <div class="sec-ring"></div>
+    <div class="sec-text">Checking browser...</div>
+    <div class="sec-bar"><div class="sec-fill"></div></div>
+  </div>
+</div>
+
+<!-- Main Card -->
+<div id="mainCard">
+  <div class="glass">
+    <div class="logo-area">
+      <span class="icon">👑</span>
+      <h1>BR <span>Mods Panel</span></h1>
+      <p>Reseller Dashboard 2026</p>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" id="tabLogin"    onclick="switchTab('login')">🔑 Login</button>
+      <button class="tab-btn"        id="tabRegister" onclick="switchTab('register')">📝 Register</button>
+    </div>
+
+    <div id="errMsg"  class="error-msg"></div>
+    <div id="sucMsg"  class="success-msg"></div>
+
+    <!-- Login Form -->
+    <form id="loginForm" class="panel-form active" onsubmit="doLogin(event)">
+      <div class="form-group">
+        <label>Username</label>
+        <div class="input-wrap">
+          <span class="ic">👤</span>
+          <input type="text" id="lUser" placeholder="Enter username" autocomplete="username" required/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <div class="input-wrap">
+          <span class="ic">🔒</span>
+          <input type="password" id="lPass" placeholder="Enter password" autocomplete="current-password" required/>
+        </div>
+      </div>
+      <button type="submit" class="btn-main" id="loginBtn">Sign In →</button>
+    </form>
+
+    <!-- Register Form -->
+    <form id="registerForm" class="panel-form" onsubmit="doRegister(event)">
+      <div class="form-group">
+        <label>Username</label>
+        <div class="input-wrap">
+          <span class="ic">👤</span>
+          <input type="text" id="rUser" placeholder="Choose a username" autocomplete="username" required/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <div class="input-wrap">
+          <span class="ic">📧</span>
+          <input type="email" id="rEmail" placeholder="your@email.com" autocomplete="email" required/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <div class="input-wrap">
+          <span class="ic">🔒</span>
+          <input type="password" id="rPass" placeholder="Min. 6 characters" autocomplete="new-password" required/>
+        </div>
+      </div>
+      <button type="submit" class="btn-main" id="registerBtn">Create Account →</button>
+    </form>
+
+    <div class="footer-note">BR Mods Panel · Secure &amp; Encrypted</div>
+  </div>
+</div>
+
+<script>
+// Security screen
+setTimeout(() => {
+  document.getElementById('secScreen').classList.add('hide');
+}, 2800);
+
+// If already logged in, redirect
+const tok = localStorage.getItem('br_token');
+const usr = JSON.parse(localStorage.getItem('br_user') || 'null');
+if (tok && usr) {
+  setTimeout(() => {
+    window.location.href = usr.role === 'admin' ? 'admin.html' : 'dashboard.html';
+  }, 2900);
+}
+
+function switchTab(t) {
+  document.getElementById('tabLogin').classList.toggle('active', t==='login');
+  document.getElementById('tabRegister').classList.toggle('active', t==='register');
+  document.getElementById('loginForm').classList.toggle('active', t==='login');
+  document.getElementById('registerForm').classList.toggle('active', t==='register');
+  hideMsg();
+}
+function showErr(m) {
+  const e = document.getElementById('errMsg');
+  e.textContent = m; e.classList.add('show');
+  document.getElementById('sucMsg').classList.remove('show');
+}
+function showSuc(m) {
+  const s = document.getElementById('sucMsg');
+  s.textContent = m; s.classList.add('show');
+  document.getElementById('errMsg').classList.remove('show');
+}
+function hideMsg() {
+  document.getElementById('errMsg').classList.remove('show');
+  document.getElementById('sucMsg').classList.remove('show');
+}
+
+async function doLogin(e) {
+  e.preventDefault(); hideMsg();
+  const btn = document.getElementById('loginBtn');
+  btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Signing in…';
+  try {
+    const r = await fetch('/auth/login', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ username: document.getElementById('lUser').value, password: document.getElementById('lPass').value })
+    });
+    const d = await r.json();
+    if (!r.ok) { showErr(d.error || 'Login failed'); return; }
+    localStorage.setItem('br_token', d.token);
+    localStorage.setItem('br_user',  JSON.stringify(d.user));
+    showSuc('✅ Login successful! Redirecting…');
+    setTimeout(() => { window.location.href = d.user.role === 'admin' ? 'admin.html' : 'dashboard.html'; }, 900);
+  } catch { showErr('Cannot connect to server. Make sure server is running.'); }
+  finally { btn.disabled = false; btn.innerHTML = 'Sign In →'; }
+}
+
+async function doRegister(e) {
+  e.preventDefault(); hideMsg();
+  const btn = document.getElementById('registerBtn');
+  btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Creating account…';
+  try {
+    const r = await fetch('/auth/register', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ username: document.getElementById('rUser').value, email: document.getElementById('rEmail').value, password: document.getElementById('rPass').value })
+    });
+    const d = await r.json();
+    if (!r.ok) { showErr(d.error || 'Registration failed'); return; }
+    localStorage.setItem('br_token', d.token);
+    localStorage.setItem('br_user',  JSON.stringify(d.user));
+    showSuc('✅ Account created! Redirecting…');
+    setTimeout(() => { window.location.href = 'dashboard.html'; }, 900);
+  } catch { showErr('Cannot connect to server. Make sure server is running.'); }
+  finally { btn.disabled = false; btn.innerHTML = 'Create Account →'; }
+}
+</script>
+</body>
+</html>

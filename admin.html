@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>BR Mods — Admin Panel</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#07070f;--card:rgba(13,13,26,.95);--border:rgba(124,58,237,.2);--p:#7C3AED;--v:#A78BFA;--c:#06B6D4;--g:#10B981;--r:#EF4444;--o:#F59E0B;--txt:#E2E2F0;--m:#6B7280;--rad:14px}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh}
+.grad{background:linear-gradient(135deg,#A78BFA,#38BDF8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(7,7,15,.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-i{max-width:1300px;margin:0 auto;padding:0 20px;height:60px;display:flex;align-items:center;gap:12px}
+.nav-logo{font-size:1.15rem;font-weight:900;margin-right:auto;display:flex;align-items:center;gap:8px}
+.api-bal{background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.25);border-radius:50px;padding:5px 14px;font-size:.8rem;font-weight:700;color:#34D399}
+.lout{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);border-radius:8px;color:#F87171;padding:5px 12px;font-family:'Outfit',sans-serif;font-size:.8rem;font-weight:600;cursor:pointer;transition:all .3s}
+.lout:hover{background:rgba(239,68,68,.2)}
+/* TABS */
+.tabs{background:rgba(13,13,26,.8);border-bottom:1px solid var(--border);display:flex;gap:0;overflow-x:auto}
+.tab{padding:14px 22px;background:none;border:none;border-bottom:2px solid transparent;color:var(--m);font-family:'Outfit',sans-serif;font-size:.88rem;font-weight:600;cursor:pointer;white-space:nowrap;transition:all .3s;display:flex;align-items:center;gap:6px}
+.tab.on{color:var(--v);border-bottom-color:var(--p)}
+.tab:hover{color:var(--txt)}
+/* MAIN */
+.main{max-width:1300px;margin:0 auto;padding:28px 20px 80px}
+/* STATS */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-bottom:28px}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--rad);padding:20px}
+.stat-icon{font-size:1.8rem;margin-bottom:8px}
+.stat-val{font-size:2rem;font-weight:900;line-height:1}
+.stat-lbl{font-size:.76rem;color:var(--m);margin-top:4px;font-weight:500;text-transform:uppercase;letter-spacing:.05em}
+/* PANELS */
+.panel{display:none}.panel.on{display:block}
+/* SECTION HDR */
+.sec-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.sec-hdr h2{font-size:1.25rem;font-weight:800}
+/* BUTTONS */
+.btn{padding:9px 18px;border:none;border-radius:10px;font-family:'Outfit',sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;transition:all .3s;display:inline-flex;align-items:center;gap:6px}
+.btn-p{background:linear-gradient(135deg,var(--p),#4F46E5);color:#fff}
+.btn-p:hover{box-shadow:0 4px 16px rgba(124,58,237,.4);transform:translateY(-1px)}
+.btn-g{background:rgba(16,185,129,.15);border:1px solid rgba(16,185,129,.3);color:#34D399}
+.btn-g:hover{background:rgba(16,185,129,.25)}
+.btn-r{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);color:#F87171}
+.btn-r:hover{background:rgba(239,68,68,.22)}
+.btn-o{background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.25);color:#FCD34D}
+.btn-sm{padding:5px 11px;font-size:.75rem}
+/* TABLE */
+.tbl-wrap{background:var(--card);border:1px solid var(--border);border-radius:var(--rad);overflow:hidden;overflow-x:auto;margin-bottom:24px}
+table{width:100%;border-collapse:collapse;min-width:600px}
+thead tr{background:rgba(124,58,237,.1);border-bottom:1px solid var(--border)}
+th{padding:11px 14px;text-align:left;font-size:.72rem;font-weight:700;color:var(--m);text-transform:uppercase;letter-spacing:.05em}
+td{padding:11px 14px;font-size:.84rem;border-bottom:1px solid rgba(124,58,237,.06)}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover{background:rgba(124,58,237,.05)}
+.empty{text-align:center;color:var(--m);padding:40px!important}
+.badge{display:inline-flex;align-items:center;gap:3px;padding:3px 9px;border-radius:50px;font-size:.72rem;font-weight:700}
+.b-g{background:rgba(16,185,129,.12);color:#34D399;border:1px solid rgba(16,185,129,.25)}
+.b-r{background:rgba(239,68,68,.12);color:#F87171;border:1px solid rgba(239,68,68,.25)}
+.b-o{background:rgba(245,158,11,.12);color:#FCD34D;border:1px solid rgba(245,158,11,.25)}
+/* MODAL */
+.ov{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.8);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .3s}
+.ov.on{opacity:1;pointer-events:all}
+.modal{background:#0d0d1a;border:1px solid rgba(124,58,237,.35);border-radius:20px;width:100%;max-width:500px;max-height:90vh;overflow-y:auto;transform:scale(.9) translateY(16px);transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+.ov.on .modal{transform:scale(1) translateY(0)}
+.m-hd{padding:20px 22px 0;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#0d0d1a;z-index:1}
+.m-hd h3{font-size:1.1rem;font-weight:800}
+.m-close{background:rgba(255,255,255,.07);border:none;border-radius:8px;color:var(--m);font-size:1rem;cursor:pointer;padding:4px 10px;transition:all .3s}
+.m-close:hover{background:rgba(239,68,68,.2);color:#F87171}
+.m-body{padding:18px 22px}
+/* FORM */
+.fg{margin-bottom:14px}
+.fg label{display:block;font-size:.75rem;font-weight:700;color:var(--m);margin-bottom:5px;text-transform:uppercase;letter-spacing:.05em}
+.fg input,.fg select,.fg textarea{width:100%;padding:10px 12px;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:10px;color:var(--txt);font-family:'Outfit',sans-serif;font-size:.88rem;outline:none;transition:all .3s;resize:vertical}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--p);background:rgba(124,58,237,.1)}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--m)}
+.fg select option{background:#0d0d1a}
+/* PRICE ROWS */
+.price-rows{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
+.price-row{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;align-items:center}
+.price-row input{margin:0}
+.btn-icon{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);border-radius:8px;color:#F87171;padding:8px 10px;cursor:pointer;font-size:.9rem;transition:all .3s}
+.btn-icon:hover{background:rgba(239,68,68,.25)}
+.m-foot{padding:0 22px 20px;display:flex;gap:10px}
+.btn-cancel{flex:1;padding:10px;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:10px;color:var(--m);font-family:'Outfit',sans-serif;font-size:.88rem;font-weight:600;cursor:pointer;transition:all .3s}
+.btn-cancel:hover{color:var(--txt)}
+.btn-save{flex:2;padding:10px;background:linear-gradient(135deg,var(--p),#4F46E5);border:none;border-radius:10px;color:#fff;font-family:'Outfit',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer;transition:all .3s}
+.btn-save:hover{box-shadow:0 4px 16px rgba(124,58,237,.4)}
+/* TOAST */
+.toasts{position:fixed;bottom:22px;right:22px;z-index:999;display:flex;flex-direction:column;gap:8px}
+.toast{min-width:220px;background:#0d0d1a;border:1px solid var(--border);border-radius:12px;padding:10px 14px;display:flex;gap:8px;align-items:flex-start;box-shadow:0 4px 20px rgba(0,0,0,.5);animation:ts .35s cubic-bezier(.34,1.56,.64,1)}
+@keyframes ts{from{opacity:0;transform:translateY(12px) scale(.9)}}
+.toast.hide{animation:th .3s ease forwards}
+@keyframes th{to{opacity:0;transform:translateY(8px)}}
+.t-ico{font-size:1.1rem}.t-msg{font-size:.8rem;font-weight:600}.t-sub{font-size:.72rem;color:var(--m)}
+.sp{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:4px}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:640px){.stats-grid{grid-template-columns:1fr 1fr}.tab{padding:11px 14px;font-size:.8rem}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-i">
+    <div class="nav-logo">👑 BR <span class="grad">Mods</span> <span style="font-size:.7rem;color:var(--m);font-weight:400">Admin</span></div>
+    <div class="api-bal">🔑 API: <span id="apiBal">Loading…</span></div>
+    <button class="lout" onclick="logout()">Logout</button>
+  </div>
+</nav>
+
+<div class="tabs">
+  <button class="tab on" id="t0" onclick="showTab(0)">📊 Dashboard</button>
+  <button class="tab"    id="t1" onclick="showTab(1)">📦 Products</button>
+  <button class="tab"    id="t2" onclick="showTab(2)">👥 Users</button>
+  <button class="tab"    id="t3" onclick="showTab(3)">📋 All Orders</button>
+</div>
+
+<div class="main">
+
+  <!-- DASHBOARD -->
+  <div class="panel on" id="p0">
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-icon">👥</div><div class="stat-val grad" id="sTotalUsers">—</div><div class="stat-lbl">Total Users</div></div>
+      <div class="stat-card"><div class="stat-icon">🛒</div><div class="stat-val grad" id="sTotalOrders">—</div><div class="stat-lbl">Total Orders</div></div>
+      <div class="stat-card"><div class="stat-icon">✅</div><div class="stat-val" style="color:#34D399" id="sSuccessOrders">—</div><div class="stat-lbl">Successful</div></div>
+      <div class="stat-card"><div class="stat-icon">💰</div><div class="stat-val" style="color:#FCD34D" id="sRevenue">—</div><div class="stat-lbl">Revenue (৳)</div></div>
+    </div>
+    <div class="sec-hdr"><h2>🕐 Recent Orders</h2></div>
+    <div class="tbl-wrap">
+      <table><thead><tr><th>#</th><th>User</th><th>Product</th><th>Duration</th><th>Price</th><th>Status</th><th>Time</th></tr></thead>
+      <tbody id="recentOrders"><tr><td class="empty" colspan="7">Loading…</td></tr></tbody></table>
+    </div>
+  </div>
+
+  <!-- PRODUCTS -->
+  <div class="panel" id="p1">
+    <div class="sec-hdr">
+      <h2>📦 Products</h2>
+      <button class="btn btn-p" onclick="openProductModal()">➕ Add Product</button>
+    </div>
+    <div class="tbl-wrap">
+      <table><thead><tr><th>ID</th><th>Icon</th><th>Name</th><th>PID</th><th>Prices</th><th>Status</th><th>Actions</th></tr></thead>
+      <tbody id="productsTbl"><tr><td class="empty" colspan="7">Loading…</td></tr></tbody></table>
+    </div>
+  </div>
+
+  <!-- USERS -->
+  <div class="panel" id="p2">
+    <div class="sec-hdr"><h2>👥 Users</h2></div>
+    <div class="tbl-wrap">
+      <table><thead><tr><th>ID</th><th>Username</th><th>Email</th><th>Role</th><th>Balance</th><th>Status</th><th>Joined</th><th>Actions</th></tr></thead>
+      <tbody id="usersTbl"><tr><td class="empty" colspan="8">Loading…</td></tr></tbody></table>
+    </div>
+  </div>
+
+  <!-- ORDERS -->
+  <div class="panel" id="p3">
+    <div class="sec-hdr"><h2>📋 All Orders</h2></div>
+    <div class="tbl-wrap">
+      <table><thead><tr><th>#</th><th>User</th><th>Product</th><th>PID</th><th>Duration</th><th>Price</th><th>Status</th><th>Time</th></tr></thead>
+      <tbody id="allOrdersTbl"><tr><td class="empty" colspan="8">Loading…</td></tr></tbody></table>
+    </div>
+  </div>
+
+</div>
+
+<!-- Product Modal -->
+<div class="ov" id="prodOv" onclick="closeProductModal()">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="m-hd">
+      <h3 id="prodModalTitle">Add Product</h3>
+      <button class="m-close" onclick="closeProductModal()">✕</button>
+    </div>
+    <div class="m-body">
+      <input type="hidden" id="editProdId"/>
+      <div style="display:grid;grid-template-columns:80px 1fr;gap:10px">
+        <div class="fg"><label>Icon</label><input type="text" id="pIcon" value="🎮" maxlength="4"/></div>
+        <div class="fg"><label>Product Name</label><input type="text" id="pName" placeholder="e.g. BR Mod Menu"/></div>
+      </div>
+      <div class="fg"><label>Product ID (PID) — from adminpanels.shop</label><input type="text" id="pPid" placeholder="e.g. BR_MENU_1DAY"/></div>
+      <div class="fg"><label>Description (optional)</label><textarea id="pDesc" rows="2" placeholder="Short description…"></textarea></div>
+      <div class="fg">
+        <label>Pricing (Duration → Your Selling Price ৳)</label>
+        <div class="price-rows" id="priceRows"></div>
+        <button type="button" class="btn btn-g btn-sm" onclick="addPriceRow()">➕ Add Duration</button>
+      </div>
+      <div class="fg">
+        <label>Status</label>
+        <select id="pActive"><option value="1">✅ Active</option><option value="0">❌ Inactive</option></select>
+      </div>
+    </div>
+    <div class="m-foot">
+      <button class="btn-cancel" onclick="closeProductModal()">Cancel</button>
+      <button class="btn-save" onclick="saveProduct()">💾 Save Product</button>
+    </div>
+  </div>
+</div>
+
+<!-- Topup Modal -->
+<div class="ov" id="topupOv" onclick="closeTopup()">
+  <div class="modal" style="max-width:360px" onclick="event.stopPropagation()">
+    <div class="m-hd"><h3>💰 Top Up Balance</h3><button class="m-close" onclick="closeTopup()">✕</button></div>
+    <div class="m-body">
+      <p style="color:var(--m);font-size:.85rem;margin-bottom:14px">User: <strong id="topupUser">—</strong></p>
+      <input type="hidden" id="topupUserId"/>
+      <div class="fg"><label>Amount (৳)</label><input type="number" id="topupAmt" placeholder="e.g. 100" min="1" step="0.01"/></div>
+    </div>
+    <div class="m-foot">
+      <button class="btn-cancel" onclick="closeTopup()">Cancel</button>
+      <button class="btn-save" onclick="doTopup()">✅ Add Balance</button>
+    </div>
+  </div>
+</div>
+
+<div class="toasts" id="toasts"></div>
+<script src="admin.js"></script>
+</body>
+</html>

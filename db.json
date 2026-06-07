@@ -1,0 +1,1095 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "email": "admin@brpanel.com",
+      "password": "$2a$10$dJzE3knESZ//SyuuWy8/QOUxq/QYPRC067wzdCL1J9avKG7d2ElgG",
+      "role": "admin",
+      "balance": 0,
+      "is_active": true,
+      "created_at": "2026-06-07T09:16:37.261Z"
+    },
+    {
+      "id": 2,
+      "username": "hasankhan",
+      "email": "hasankhanvaiji@gmail.com",
+      "password": "$2a$10$wq2YQY7UAvHjK5/LhDKW1.J3CTy0FesKik7aT7g9AWhuo3GzpFLWW",
+      "role": "user",
+      "balance": 1232,
+      "is_active": true,
+      "created_at": "2026-06-07T09:27:38.292Z"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "BR MOD FF PC VERSION",
+      "pid": "49",
+      "icon": "🎮",
+      "description": "",
+      "is_active": true,
+      "created_at": "2026-06-07T09:23:09.587Z"
+    },
+    {
+      "id": 2,
+      "name": "BR MOD FF ROOT ANDROID",
+      "pid": "67",
+      "icon": "🎮",
+      "description": "",
+      "is_active": true,
+      "created_at": "2026-06-07T09:23:09.588Z"
+    },
+    {
+      "id": 3,
+      "name": "DRIPCLIENT 8BP NONROOT ANDROID",
+      "pid": "59",
+      "icon": "🎮",
+      "description": "",
+      "is_active": true,
+      "created_at": "2026-06-07T09:23:09.588Z"
+    },
+    {
+      "id": 4,
+      "name": "DRIPCLIENT FF NONROOT ANDROID",
+      "pid": "62",
+      "icon": "🎮",
+      "description": "",
+      "is_active": true,
+      "created_at": "2026-06-07T09:23:09.588Z"
+    },
+    {
+      "id": 5,
+      "name": "DRIPCLIENT FF PC AIMKILL",
+      "pid": "44",
+      "icon": "🎮",
+      "description": "",
+      "is_active": true,
+      "created_at": "2026-06-07T09:23:09.588Z"
+    },
+    {
+      "id": 6,
+      "name": "DRIPCLIENT FF ROOT ANDROID",
+      "pid": "63",
+      "icon": "🎮",
+      "description": "",
+      "is_active": true,
+      "created_at": "2026-06-07T09:23:09.588Z"
+    },
+    {
+      "id": 7,
+      "name": "FLUORITE IOS FF",
+      "pid": "58",
+      "icon": "🎮",
+      "description": "",
+      "is_active": true,
+      "created_at": "2026-06-07T09:23:09.588Z"
+    },
+    {
+      "id": 8,
+      "name": "FLUORITE IOS MLBB",
+      "pid": "84",
+      "icon": "🎮",
+      "description": "",
+      "is_active": true,
+      "created_at": "2026-06-07T09:23:09.588Z"
+    },
+    {
+      "id": 9,
+      "name": "HAXX-CKER PRO FF ROOT ANDROID",
+      "pid": "64",
+      "icon": "🎮",
+      "description": "",
+      "is_active": true,
+      "created_at": "2026-06-07T09:23:09.588Z"
+    },
+    {
+      "id": 10,
+      "name": "HEX BLADE FF ROOT ANDROID",
+      "pid": "71",
+      "icon": "🎮",
+      "description": "",
+      "is_active": true,
+      "created_at": "2026-06-07T09:23:09.588Z"
+    },
+    {
+      "id": 11,
+      "name": "HG CHEATS FF ALL ANDROID",
+      "pid": "65",
+      "icon": "🎮",
+      "description": "",
+      "is_active": true,
+      "created_at": "2026-06-07T09:23:09.588Z"
+    },
+    {
+      "id": 12,
+      "name": "HIKARI MOD FF ROOT ANDROID",
+      "pid": "72",
+      "icon": "🎮",
+      "description": "",
+      "is_active": true,
+      "created_at": "2026-06-07T09:23:09.588Z"
+    },
+    {
+      "id": 13,
+      "name": "IOS CLOUD CODM",
+      "pid": "87",
+      "icon": "🎮",
+      "description": "",
+      "is_active": true,
+      "created_at": "2026-06-07T09:23:09.588Z"
+    },
+    {
+      "id": 14,
+      "name": "IOS FLUORITE 8 BALL POOL",
+      "pid": "86",
+      "icon": "🎮",
+      "description": "",
+      "is_active": true,
+      "created_at": "2026-06-07T09:23:09.588Z"
+    },
+    {
+      "id": 15,
+      "name": "IOS IPHONE ALL GBOX CERTIFICATE",
+      "pid": "85",
+      "icon": "🎮",
+      "description": "",
+      "is_active": true,
+      "created_at": "2026-06-07T09:23:09.588Z"
+    },
+    {
+      "id": 16,
+      "name": "KOS 8 BALL POOL NONROOT ANDROID",
+      "pid": "76",
+      "icon": "🎮",
+      "description": "",
+      "is_active": true,
+      "created_at": "2026-06-07T09:23:09.588Z"
+    },
+    {
+      "id": 17,
+      "name": "KOS CARROM POOL NONROOT ANDROID",
+      "pid": "75",
+      "icon": "🎮",
+      "description": "",
+      "is_active": true,
+      "created_at": "2026-06-07T09:23:09.588Z"
+    },
+    {
+      "id": 18,
+      "name": "KOS FF ROOT ANDROID",
+      "pid": "74",
+      "icon": "🎮",
+      "description": "",
+      "is_active": true,
+      "created_at": "2026-06-07T09:23:09.588Z"
+    },
+    {
+      "id": 19,
+      "name": "LK TEAM FF CRACK ROOT ANDROID",
+      "pid": "89",
+      "icon": "🎮",
+      "description": "",
+      "is_active": true,
+      "created_at": "2026-06-07T09:23:09.588Z"
+    },
+    {
+      "id": 20,
+      "name": "MIGUL IPHONE IOS FF",
+      "pid": "69",
+      "icon": "🎮",
+      "description": "",
+      "is_active": true,
+      "created_at": "2026-06-07T09:23:09.588Z"
+    },
+    {
+      "id": 21,
+      "name": "NEO STRIKE FF ROOT ANDROID",
+      "pid": "70",
+      "icon": "🎮",
+      "description": "",
+      "is_active": true,
+      "created_at": "2026-06-07T09:23:09.588Z"
+    },
+    {
+      "id": 22,
+      "name": "PATO TEAM FF ALL ANDROID",
+      "pid": "54",
+      "icon": "🎮",
+      "description": "",
+      "is_active": true,
+      "created_at": "2026-06-07T09:23:09.588Z"
+    },
+    {
+      "id": 23,
+      "name": "PRIME HOOK FF NONROOT ANDROID",
+      "pid": "48",
+      "icon": "🎮",
+      "description": "",
+      "is_active": true,
+      "created_at": "2026-06-07T09:23:09.588Z"
+    },
+    {
+      "id": 24,
+      "name": "SNAKE 8 BALL POOL NONROOT ANDROID",
+      "pid": "79",
+      "icon": "🎮",
+      "description": "",
+      "is_active": true,
+      "created_at": "2026-06-07T09:23:09.588Z"
+    },
+    {
+      "id": 25,
+      "name": "SNAKE CARROM POOL",
+      "pid": "77",
+      "icon": "🎮",
+      "description": "",
+      "is_active": true,
+      "created_at": "2026-06-07T09:23:09.588Z"
+    },
+    {
+      "id": 26,
+      "name": "SNAKE SOCCER STARS NONROOT ANDROID",
+      "pid": "78",
+      "icon": "🎮",
+      "description": "",
+      "is_active": true,
+      "created_at": "2026-06-07T09:23:09.588Z"
+    },
+    {
+      "id": 27,
+      "name": "STRICKS BR ( ALPHA X ) CRACK FF ROOT ANDROID",
+      "pid": "88",
+      "icon": "🎮",
+      "description": "",
+      "is_active": true,
+      "created_at": "2026-06-07T09:23:09.588Z"
+    },
+    {
+      "id": 28,
+      "name": "XYZ CHEATS FF ROOT ANDROID",
+      "pid": "66",
+      "icon": "🎮",
+      "description": "",
+      "is_active": true,
+      "created_at": "2026-06-07T09:23:09.588Z"
+    }
+  ],
+  "prices": [
+    {
+      "id": 7,
+      "product_id": 2,
+      "duration": "1 DayS",
+      "price": 0
+    },
+    {
+      "id": 8,
+      "product_id": 2,
+      "duration": "15 DayS",
+      "price": 0
+    },
+    {
+      "id": 9,
+      "product_id": 2,
+      "duration": "30 DayS",
+      "price": 0
+    },
+    {
+      "id": 10,
+      "product_id": 2,
+      "duration": "7 DayS",
+      "price": 0
+    },
+    {
+      "id": 11,
+      "product_id": 3,
+      "duration": "1 DayS",
+      "price": 0
+    },
+    {
+      "id": 12,
+      "product_id": 3,
+      "duration": "30 DayS",
+      "price": 0
+    },
+    {
+      "id": 13,
+      "product_id": 3,
+      "duration": "7 DayS",
+      "price": 0
+    },
+    {
+      "id": 14,
+      "product_id": 4,
+      "duration": "1 DayS NONROOT",
+      "price": 0
+    },
+    {
+      "id": 15,
+      "product_id": 4,
+      "duration": "15 DayS NONROOT",
+      "price": 0
+    },
+    {
+      "id": 16,
+      "product_id": 4,
+      "duration": "3 DayS NONROOT",
+      "price": 0
+    },
+    {
+      "id": 17,
+      "product_id": 4,
+      "duration": "30 DayS NONROOT",
+      "price": 0
+    },
+    {
+      "id": 18,
+      "product_id": 4,
+      "duration": "7 DayS NONROOT",
+      "price": 0
+    },
+    {
+      "id": 19,
+      "product_id": 5,
+      "duration": "1 DayS PC AIMKILL",
+      "price": 0
+    },
+    {
+      "id": 20,
+      "product_id": 5,
+      "duration": "15 DayS PC AIMKILL",
+      "price": 0
+    },
+    {
+      "id": 21,
+      "product_id": 5,
+      "duration": "30 DayS PC AIMKILL",
+      "price": 0
+    },
+    {
+      "id": 22,
+      "product_id": 5,
+      "duration": "7 DayS PC AIMKILL",
+      "price": 0
+    },
+    {
+      "id": 23,
+      "product_id": 6,
+      "duration": "30 DayS ROOT",
+      "price": 0
+    },
+    {
+      "id": 24,
+      "product_id": 6,
+      "duration": "7 DayS ROOT",
+      "price": 0
+    },
+    {
+      "id": 25,
+      "product_id": 7,
+      "duration": "1 DayS Fluorite FF",
+      "price": 0
+    },
+    {
+      "id": 26,
+      "product_id": 7,
+      "duration": "30 DayS Fluorite FF",
+      "price": 0
+    },
+    {
+      "id": 27,
+      "product_id": 7,
+      "duration": "7 DayS Fluorite FF",
+      "price": 0
+    },
+    {
+      "id": 28,
+      "product_id": 8,
+      "duration": "1 DayS",
+      "price": 0
+    },
+    {
+      "id": 29,
+      "product_id": 8,
+      "duration": "30 DayS",
+      "price": 0
+    },
+    {
+      "id": 30,
+      "product_id": 8,
+      "duration": "7 DayS",
+      "price": 0
+    },
+    {
+      "id": 31,
+      "product_id": 9,
+      "duration": "10 DayS",
+      "price": 0
+    },
+    {
+      "id": 32,
+      "product_id": 10,
+      "duration": "1 DayS",
+      "price": 0
+    },
+    {
+      "id": 33,
+      "product_id": 10,
+      "duration": "10 DayS",
+      "price": 0
+    },
+    {
+      "id": 34,
+      "product_id": 10,
+      "duration": "20 DayS",
+      "price": 0
+    },
+    {
+      "id": 35,
+      "product_id": 10,
+      "duration": "30 DayS",
+      "price": 0
+    },
+    {
+      "id": 36,
+      "product_id": 11,
+      "duration": "1 DayS Root + Nonroot",
+      "price": 0
+    },
+    {
+      "id": 37,
+      "product_id": 11,
+      "duration": "10 DayS Root + Nonroot",
+      "price": 0
+    },
+    {
+      "id": 38,
+      "product_id": 11,
+      "duration": "30 DayS Root + Nonroot",
+      "price": 0
+    },
+    {
+      "id": 39,
+      "product_id": 11,
+      "duration": "7 DayS Root + Nonroot",
+      "price": 0
+    },
+    {
+      "id": 40,
+      "product_id": 12,
+      "duration": "1 DayS",
+      "price": 0
+    },
+    {
+      "id": 41,
+      "product_id": 12,
+      "duration": "15 DayS",
+      "price": 0
+    },
+    {
+      "id": 42,
+      "product_id": 12,
+      "duration": "3 DayS",
+      "price": 0
+    },
+    {
+      "id": 43,
+      "product_id": 12,
+      "duration": "30 DayS",
+      "price": 0
+    },
+    {
+      "id": 44,
+      "product_id": 12,
+      "duration": "7 DayS",
+      "price": 0
+    },
+    {
+      "id": 45,
+      "product_id": 13,
+      "duration": "30 DayS",
+      "price": 0
+    },
+    {
+      "id": 46,
+      "product_id": 14,
+      "duration": "1 DayS",
+      "price": 0
+    },
+    {
+      "id": 47,
+      "product_id": 14,
+      "duration": "30 DayS",
+      "price": 0
+    },
+    {
+      "id": 48,
+      "product_id": 14,
+      "duration": "7 DayS",
+      "price": 0
+    },
+    {
+      "id": 49,
+      "product_id": 15,
+      "duration": "1 Year ios Esign Gbox Certificate",
+      "price": 0
+    },
+    {
+      "id": 50,
+      "product_id": 15,
+      "duration": "1 Year ios Signer Gbox Certificate",
+      "price": 0
+    },
+    {
+      "id": 51,
+      "product_id": 16,
+      "duration": "1 DayS Mod",
+      "price": 0
+    },
+    {
+      "id": 52,
+      "product_id": 16,
+      "duration": "1 DayS Premium Access",
+      "price": 0
+    },
+    {
+      "id": 53,
+      "product_id": 16,
+      "duration": "1 DayS Standard Access",
+      "price": 0
+    },
+    {
+      "id": 54,
+      "product_id": 16,
+      "duration": "30 DayS Mod",
+      "price": 0
+    },
+    {
+      "id": 55,
+      "product_id": 16,
+      "duration": "30 DayS Premium Access",
+      "price": 0
+    },
+    {
+      "id": 56,
+      "product_id": 16,
+      "duration": "30 DayS Standard Access",
+      "price": 0
+    },
+    {
+      "id": 57,
+      "product_id": 16,
+      "duration": "7 DayS Mod",
+      "price": 0
+    },
+    {
+      "id": 58,
+      "product_id": 16,
+      "duration": "7 DayS Premium Access",
+      "price": 0
+    },
+    {
+      "id": 59,
+      "product_id": 16,
+      "duration": "7 DayS Standard Access",
+      "price": 0
+    },
+    {
+      "id": 60,
+      "product_id": 17,
+      "duration": "1 DayS",
+      "price": 0
+    },
+    {
+      "id": 61,
+      "product_id": 17,
+      "duration": "30 DayS",
+      "price": 0
+    },
+    {
+      "id": 62,
+      "product_id": 17,
+      "duration": "7 DayS",
+      "price": 0
+    },
+    {
+      "id": 63,
+      "product_id": 18,
+      "duration": "1 DayS",
+      "price": 0
+    },
+    {
+      "id": 64,
+      "product_id": 18,
+      "duration": "30 DayS",
+      "price": 0
+    },
+    {
+      "id": 65,
+      "product_id": 18,
+      "duration": "7 DayS",
+      "price": 0
+    },
+    {
+      "id": 66,
+      "product_id": 19,
+      "duration": "1 DayS",
+      "price": 0
+    },
+    {
+      "id": 67,
+      "product_id": 19,
+      "duration": "3 DayS",
+      "price": 0
+    },
+    {
+      "id": 68,
+      "product_id": 19,
+      "duration": "7 DayS",
+      "price": 0
+    },
+    {
+      "id": 69,
+      "product_id": 20,
+      "duration": "1 DayS Basic",
+      "price": 0
+    },
+    {
+      "id": 70,
+      "product_id": 20,
+      "duration": "1 DayS PRO",
+      "price": 0
+    },
+    {
+      "id": 71,
+      "product_id": 20,
+      "duration": "30 DayS Basic",
+      "price": 0
+    },
+    {
+      "id": 72,
+      "product_id": 20,
+      "duration": "30 DayS PRO",
+      "price": 0
+    },
+    {
+      "id": 73,
+      "product_id": 20,
+      "duration": "7 DayS Basic",
+      "price": 0
+    },
+    {
+      "id": 74,
+      "product_id": 20,
+      "duration": "7 DayS PRO",
+      "price": 0
+    },
+    {
+      "id": 75,
+      "product_id": 21,
+      "duration": "1 DayS",
+      "price": 0
+    },
+    {
+      "id": 76,
+      "product_id": 21,
+      "duration": "14 DayS",
+      "price": 0
+    },
+    {
+      "id": 77,
+      "product_id": 21,
+      "duration": "28 DayS",
+      "price": 0
+    },
+    {
+      "id": 78,
+      "product_id": 21,
+      "duration": "3 DayS",
+      "price": 0
+    },
+    {
+      "id": 79,
+      "product_id": 21,
+      "duration": "7 DayS",
+      "price": 0
+    },
+    {
+      "id": 80,
+      "product_id": 22,
+      "duration": "15 DayS All Colours Mix",
+      "price": 0
+    },
+    {
+      "id": 81,
+      "product_id": 22,
+      "duration": "3 DayS All Colours Mix",
+      "price": 0
+    },
+    {
+      "id": 82,
+      "product_id": 22,
+      "duration": "30 DayS All Colours Mix",
+      "price": 0
+    },
+    {
+      "id": 83,
+      "product_id": 22,
+      "duration": "7 DayS All Colours Mix",
+      "price": 0
+    },
+    {
+      "id": 84,
+      "product_id": 23,
+      "duration": "1 Days Nonroot",
+      "price": 0
+    },
+    {
+      "id": 85,
+      "product_id": 23,
+      "duration": "10 Days Nonroot",
+      "price": 0
+    },
+    {
+      "id": 86,
+      "product_id": 23,
+      "duration": "3 Days Nonroot",
+      "price": 0
+    },
+    {
+      "id": 87,
+      "product_id": 23,
+      "duration": "7 Days Nonroot",
+      "price": 0
+    },
+    {
+      "id": 88,
+      "product_id": 24,
+      "duration": "10 DayS",
+      "price": 0
+    },
+    {
+      "id": 89,
+      "product_id": 24,
+      "duration": "3 DayS",
+      "price": 0
+    },
+    {
+      "id": 90,
+      "product_id": 24,
+      "duration": "30 DayS",
+      "price": 0
+    },
+    {
+      "id": 91,
+      "product_id": 25,
+      "duration": "10 DayS",
+      "price": 0
+    },
+    {
+      "id": 92,
+      "product_id": 25,
+      "duration": "3 DayS",
+      "price": 0
+    },
+    {
+      "id": 93,
+      "product_id": 25,
+      "duration": "30 DayS",
+      "price": 0
+    },
+    {
+      "id": 94,
+      "product_id": 26,
+      "duration": "10 DayS",
+      "price": 0
+    },
+    {
+      "id": 95,
+      "product_id": 26,
+      "duration": "3 DayS",
+      "price": 0
+    },
+    {
+      "id": 96,
+      "product_id": 26,
+      "duration": "30 DayS",
+      "price": 0
+    },
+    {
+      "id": 97,
+      "product_id": 27,
+      "duration": "1 DayS",
+      "price": 0
+    },
+    {
+      "id": 98,
+      "product_id": 27,
+      "duration": "3 DayS",
+      "price": 0
+    },
+    {
+      "id": 99,
+      "product_id": 27,
+      "duration": "7 DayS",
+      "price": 0
+    },
+    {
+      "id": 100,
+      "product_id": 28,
+      "duration": "1 DayS",
+      "price": 0
+    },
+    {
+      "id": 101,
+      "product_id": 28,
+      "duration": "15 DayS",
+      "price": 0
+    },
+    {
+      "id": 102,
+      "product_id": 28,
+      "duration": "3 DayS",
+      "price": 0
+    },
+    {
+      "id": 103,
+      "product_id": 28,
+      "duration": "30 DayS",
+      "price": 0
+    },
+    {
+      "id": 104,
+      "product_id": 28,
+      "duration": "7 DayS",
+      "price": 0
+    },
+    {
+      "id": 105,
+      "product_id": 1,
+      "duration": "1 Day Pc Aim Silent",
+      "price": 120
+    },
+    {
+      "id": 106,
+      "product_id": 1,
+      "duration": "10 Days Pc Aim Silent",
+      "price": 600
+    },
+    {
+      "id": 107,
+      "product_id": 1,
+      "duration": "30 Days Pc Aim Silent",
+      "price": 1000
+    }
+  ],
+  "orders": [
+    {
+      "id": 1,
+      "user_id": 2,
+      "username": "hasankhan",
+      "product_id": 1,
+      "product_name": "BR MOD FF PC VERSION",
+      "pid": "49",
+      "duration": "1 Day Pc Aim Silent",
+      "price_paid": 0,
+      "status": "failed",
+      "api_response": "{\"status\":\"error\",\"msg\":\"Low Balance! Wallet: ₹35\"}",
+      "created_at": "2026-06-07T09:27:53.961Z"
+    },
+    {
+      "id": 2,
+      "user_id": 2,
+      "username": "hasankhan",
+      "product_id": 2,
+      "product_name": "BR MOD FF ROOT ANDROID",
+      "pid": "67",
+      "duration": "1 DayS",
+      "price_paid": 0,
+      "status": "failed",
+      "api_response": "{\"status\":\"error\",\"msg\":\"Low Balance! Wallet: ₹35\"}",
+      "created_at": "2026-06-07T09:41:11.847Z"
+    },
+    {
+      "id": 3,
+      "user_id": 2,
+      "username": "hasankhan",
+      "product_id": 1,
+      "product_name": "BR MOD FF PC VERSION",
+      "pid": "49",
+      "duration": "1 Day Pc Aim Silent",
+      "price_paid": 120,
+      "status": "failed",
+      "api_response": "{\"status\":\"error\",\"msg\":\"Low Balance! Wallet: ₹35\"}",
+      "created_at": "2026-06-07T09:41:24.533Z"
+    },
+    {
+      "id": 4,
+      "user_id": 2,
+      "username": "hasankhan",
+      "product_id": 1,
+      "product_name": "BR MOD FF PC VERSION",
+      "pid": "49",
+      "duration": "1 Day Pc Aim Silent",
+      "price_paid": 120,
+      "status": "failed",
+      "api_response": "{\"status\":\"error\",\"msg\":\"Low Balance! Wallet: ₹35\"}",
+      "created_at": "2026-06-07T09:41:28.927Z"
+    },
+    {
+      "id": 5,
+      "user_id": 2,
+      "username": "hasankhan",
+      "product_id": 1,
+      "product_name": "BR MOD FF PC VERSION",
+      "pid": "49",
+      "duration": "1 Day Pc Aim Silent",
+      "price_paid": 120,
+      "status": "failed",
+      "api_response": "{\"status\":\"error\",\"msg\":\"Low Balance! Wallet: ₹35\"}",
+      "created_at": "2026-06-07T09:41:30.211Z"
+    },
+    {
+      "id": 6,
+      "user_id": 2,
+      "username": "hasankhan",
+      "product_id": 1,
+      "product_name": "BR MOD FF PC VERSION",
+      "pid": "49",
+      "duration": "1 Day Pc Aim Silent",
+      "price_paid": 120,
+      "status": "failed",
+      "api_response": "{\"status\":\"error\",\"msg\":\"Low Balance! Wallet: ₹35\"}",
+      "created_at": "2026-06-07T09:41:30.796Z"
+    },
+    {
+      "id": 7,
+      "user_id": 2,
+      "username": "hasankhan",
+      "product_id": 1,
+      "product_name": "BR MOD FF PC VERSION",
+      "pid": "49",
+      "duration": "1 Day Pc Aim Silent",
+      "price_paid": 120,
+      "status": "failed",
+      "api_response": "{\"status\":\"error\",\"msg\":\"Low Balance! Wallet: ₹35\"}",
+      "created_at": "2026-06-07T09:41:31.075Z"
+    },
+    {
+      "id": 8,
+      "user_id": 2,
+      "username": "hasankhan",
+      "product_id": 1,
+      "product_name": "BR MOD FF PC VERSION",
+      "pid": "49",
+      "duration": "1 Day Pc Aim Silent",
+      "price_paid": 120,
+      "status": "failed",
+      "api_response": "{\"status\":\"error\",\"msg\":\"Low Balance! Wallet: ₹35\"}",
+      "created_at": "2026-06-07T09:41:31.242Z"
+    },
+    {
+      "id": 9,
+      "user_id": 2,
+      "username": "hasankhan",
+      "product_id": 1,
+      "product_name": "BR MOD FF PC VERSION",
+      "pid": "49",
+      "duration": "1 Day Pc Aim Silent",
+      "price_paid": 120,
+      "status": "failed",
+      "api_response": "{\"status\":\"error\",\"msg\":\"Low Balance! Wallet: ₹35\"}",
+      "created_at": "2026-06-07T09:41:31.425Z"
+    },
+    {
+      "id": 10,
+      "user_id": 2,
+      "username": "hasankhan",
+      "product_id": 1,
+      "product_name": "BR MOD FF PC VERSION",
+      "pid": "49",
+      "duration": "1 Day Pc Aim Silent",
+      "price_paid": 120,
+      "status": "failed",
+      "api_response": "{\"status\":\"error\",\"msg\":\"Low Balance! Wallet: ₹35\"}",
+      "created_at": "2026-06-07T09:41:31.579Z"
+    },
+    {
+      "id": 11,
+      "user_id": 2,
+      "username": "hasankhan",
+      "product_id": 1,
+      "product_name": "BR MOD FF PC VERSION",
+      "pid": "49",
+      "duration": "1 Day Pc Aim Silent",
+      "price_paid": 120,
+      "status": "failed",
+      "api_response": "{\"status\":\"error\",\"msg\":\"Low Balance! Wallet: ₹35\"}",
+      "created_at": "2026-06-07T09:41:43.042Z"
+    },
+    {
+      "id": 12,
+      "user_id": 2,
+      "username": "hasankhan",
+      "product_id": 1,
+      "product_name": "BR MOD FF PC VERSION",
+      "pid": "49",
+      "duration": "1 Day Pc Aim Silent",
+      "price_paid": 120,
+      "status": "failed",
+      "api_response": "{\"status\":\"error\",\"msg\":\"Low Balance! Wallet: ₹35\"}",
+      "created_at": "2026-06-07T09:43:25.729Z"
+    },
+    {
+      "id": 13,
+      "user_id": 2,
+      "username": "hasankhan",
+      "product_id": 1,
+      "product_name": "BR MOD FF PC VERSION",
+      "pid": "49",
+      "duration": "1 Day Pc Aim Silent",
+      "price_paid": 120,
+      "status": "failed",
+      "api_response": "{\"status\":\"error\",\"msg\":\"Low Balance! Wallet: ₹35\"}",
+      "created_at": "2026-06-07T10:18:58.030Z"
+    }
+  ],
+  "_nextId": {
+    "users": 3,
+    "products": 29,
+    "prices": 108,
+    "orders": 14,
+    "deposits": null
+  },
+  "deposits": [
+    {
+      "user_id": 2,
+      "username": "hasankhan",
+      "amount": 100,
+      "trx_id": "NBHGFREW",
+      "method": "nagad",
+      "status": "pending",
+      "created_at": "2026-06-07T09:59:47.439Z"
+    },
+    {
+      "id": null,
+      "user_id": 2,
+      "username": "hasankhan",
+      "amount": 100,
+      "trx_id": "NBHGFREW",
+      "method": "nagad",
+      "status": "pending",
+      "created_at": "2026-06-07T09:59:49.387Z"
+    },
+    {
+      "id": null,
+      "user_id": 2,
+      "username": "hasankhan",
+      "amount": 500,
+      "trx_id": "FDGFDSWER",
+      "method": "bkash",
+      "status": "pending",
+      "created_at": "2026-06-07T10:19:09.264Z"
+    }
+  ]
+}
